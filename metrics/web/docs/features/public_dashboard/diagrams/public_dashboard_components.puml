@@ -1,0 +1,35 @@
+@startuml public_dashboard_components
+
+legend top left
+    | Color | Arrow type |
+    |<#B70033>| Existing relationship |
+    |<#Green>| New relationship/component |
+    |<#5B95BB>| Modified relationship/component |
+endlegend
+
+
+package "Metrics Web" {
+    component "Auth" as auth #5B95BB
+    component "Feature Config" as feature_config #5B95BB
+}
+
+package "Metrics Firebase" {
+    component "Security Rules Sources" as rules_sources #5B95BB
+}
+
+cloud "Firebase" {
+    component "Firestore" as firestore #5B95BB
+    component "Security Rules" as rules
+    component "Firebase Auth" as firebase_auth #5B95BB
+}
+
+feature_config --> firestore : loads configuration
+feature_config -[#Green]right-> auth : <color:green>provides configuration
+
+auth -[#Green]-> firebase_auth : <color:green>anonymously authenticates
+
+firestore --> rules : uses
+
+rules_sources --> rules : deployed to
+
+@enduml

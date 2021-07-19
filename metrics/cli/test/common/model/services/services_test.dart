@@ -4,12 +4,12 @@
 import 'package:cli/common/model/services/services.dart';
 import 'package:test/test.dart';
 
-import '../../../test_utils/firebase_service_mock.dart';
-import '../../../test_utils/flutter_service_mock.dart';
-import '../../../test_utils/gcloud_service_mock.dart';
-import '../../../test_utils/git_service_mock.dart';
-import '../../../test_utils/npm_service_mock.dart';
-import '../../../test_utils/sentry_service_mock.dart';
+import '../../../test_utils/mocks/firebase_service_mock.dart';
+import '../../../test_utils/mocks/flutter_service_mock.dart';
+import '../../../test_utils/mocks/gcloud_service_mock.dart';
+import '../../../test_utils/mocks/git_service_mock.dart';
+import '../../../test_utils/mocks/npm_service_mock.dart';
+import '../../../test_utils/mocks/sentry_service_mock.dart';
 
 // ignore_for_file: avoid_redundant_argument_values
 
@@ -125,12 +125,13 @@ void main() {
       "creates an instance with the given parameters",
       () {
         final services = Services(
-            flutterService: flutterService,
-            gcloudService: gcloudService,
-            gitService: gitService,
-            npmService: npmService,
-            firebaseService: firebaseService,
-            sentryService: sentryService);
+          flutterService: flutterService,
+          gcloudService: gcloudService,
+          gitService: gitService,
+          npmService: npmService,
+          firebaseService: firebaseService,
+          sentryService: sentryService,
+        );
 
         expect(services.flutterService, equals(flutterService));
         expect(services.gcloudService, equals(gcloudService));
