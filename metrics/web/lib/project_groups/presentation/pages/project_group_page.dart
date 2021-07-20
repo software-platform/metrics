@@ -14,6 +14,9 @@ import 'package:provider/provider.dart';
 /// A page that displays the list of [ProjectGroup]s and provides an ability
 /// to add a new [ProjectGroup].
 class ProjectGroupPage extends StatefulWidget {
+  /// Creates a new instance of the [ProjectGroupPage].
+  const ProjectGroupPage({Key key}) : super(key: key);
+
   @override
   _ProjectGroupPageState createState() => _ProjectGroupPageState();
 }

@@ -137,7 +137,7 @@ class _DashboardTestbed extends StatelessWidget {
         return MaterialApp(
           home: MetricsThemeBuilder(
             builder: (_, __) {
-              return DashboardPage();
+              return const DashboardPage();
             },
           ),
         );

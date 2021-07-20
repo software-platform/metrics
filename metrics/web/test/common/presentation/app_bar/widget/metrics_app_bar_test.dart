@@ -149,7 +149,7 @@ class _MetricsAppBarTestbed extends StatelessWidget {
       navigationNotifier: navigationNotifier,
       child: MaterialApp(
         routes: {
-          '/dashboard': (context) => DashboardPage(),
+          '/dashboard': (context) => const DashboardPage(),
         },
         home: const Scaffold(
           body: MetricsAppBar(),

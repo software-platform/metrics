@@ -959,7 +959,7 @@ void main() {
     );
 
     test(
-      ".handleInitialRoutePath() uses the given metrics page factory with correct parameters to create a metrics page",
+      ".handleInitialRoutePath() uses the given metrics page factory to create a metrics page",
       () {
         final pageFactory = _MetricsPageFactoryMock();
         final notifier = NavigationNotifier(

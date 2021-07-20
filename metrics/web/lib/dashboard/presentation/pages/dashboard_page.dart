@@ -1,4 +1,4 @@
-// Use of this source code is governed by the Apache License, Version 2.0 
+// Use of this source code is governed by the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
@@ -14,6 +14,9 @@ import 'package:provider/provider.dart';
 /// The widget that allows to quickly get primary metrics
 /// of all available projects.
 class DashboardPage extends StatefulWidget {
+  /// Creates a new instance of the [DashboardPage].
+  const DashboardPage({Key key}) : super(key: key);
+
   @override
   _DashboardPageState createState() => _DashboardPageState();
 }

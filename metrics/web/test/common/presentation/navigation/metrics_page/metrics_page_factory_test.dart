@@ -29,6 +29,11 @@ void main() {
     final debugMenuPath = RouteConfiguration.debugMenu().path;
     final dashboardPath = RouteConfiguration.dashboard().path;
 
+    tearDown(() {
+      reset(routeConfiguration);
+      reset(routeName);
+    });
+
     test(
       ".create() returns the metrics page with the dashboard page child if the given route configuration is null",
       () {
@@ -39,7 +44,7 @@ void main() {
     );
 
     test(
-      ".create() returns the metrics page with the name equals to the route configuration dashboard path if the given route configuration is null",
+      ".create() returns the metrics page with the name equal to the dashboard path if the given route configuration is null",
       () {
         final page = metricsPageFactory.create(null, pageParameters);
 
@@ -48,7 +53,7 @@ void main() {
     );
 
     test(
-      ".create() returns the metrics page with the route name equals to the dashboard route name if the given route configuration is null",
+      ".create() returns the metrics page with the route name equal to the dashboard route name if the given route configuration is null",
       () {
         final page = metricsPageFactory.create(null, pageParameters);
 
@@ -57,7 +62,7 @@ void main() {
     );
 
     test(
-      ".create() returns the metrics page with the arguments equals to the given page parameters if the given route configuration is null",
+      ".create() returns the metrics page with the arguments equal to the given page parameters if the given route configuration is null",
       () {
         final page = metricsPageFactory.create(null, pageParameters);
 
@@ -78,7 +83,7 @@ void main() {
     );
 
     test(
-      ".create() returns the metrics page with a name equals to the route configuration dashboard path if the given route configuration name is unknown",
+      ".create() returns the metrics page with a name equal to the dashboard path if the given route configuration name is unknown",
       () {
         when(routeConfiguration.name).thenReturn(routeName);
         when(routeName.value).thenReturn(unknownRouteName);
@@ -90,7 +95,7 @@ void main() {
     );
 
     test(
-      ".create() returns the metrics page with the route name equals to the dashboard route name if the given route configuration name is unknown",
+      ".create() returns the metrics page with the route name equal to the dashboard route name if the given route configuration name is unknown",
       () {
         when(routeConfiguration.name).thenReturn(routeName);
         when(routeName.value).thenReturn(unknownRouteName);
@@ -102,7 +107,7 @@ void main() {
     );
 
     test(
-      ".create() returns the metrics page with the arguments equals to the given page parameters if the given route configuration name is unknown",
+      ".create() returns the metrics page with the arguments equal to the given page parameters if the given route configuration name is unknown",
       () {
         when(routeConfiguration.name).thenReturn(routeName);
         when(routeName.value).thenReturn(unknownRouteName);
@@ -172,7 +177,7 @@ void main() {
     );
 
     test(
-      ".create() returns the metrics page with the route name equals to the given route configuration route name",
+      ".create() returns the metrics page with the route name equal to the given route configuration route name",
       () {
         when(routeConfiguration.name).thenReturn(projectGroupsRouteName);
 
@@ -183,7 +188,7 @@ void main() {
     );
 
     test(
-      ".create() returns the metrics page with the name equals to the given route configuration path",
+      ".create() returns the metrics page with the name equal to the given route configuration path",
       () {
         when(routeConfiguration.name).thenReturn(projectGroupsRouteName);
         when(routeConfiguration.path).thenReturn(debugMenuPath);
@@ -195,7 +200,7 @@ void main() {
     );
 
     test(
-      ".create() returns the metrics page with the arguments equals to the given the given page parameters",
+      ".create() returns the metrics page with the arguments equal to the given the given page parameters",
       () {
         when(routeConfiguration.name).thenReturn(projectGroupsRouteName);
 

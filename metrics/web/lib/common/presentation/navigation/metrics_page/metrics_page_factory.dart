@@ -18,47 +18,32 @@ class MetricsPageFactory {
   /// Creates the [MetricsPage] using the given [routeConfiguration]
   /// and [pageParameters].
   ///
-  /// If the given [routeConfiguration] is `null` or the [routeConfiguration]'s
-  /// name does not match to any of [RouteName]s returns the [DashboardPage].
+  /// If the given [routeConfiguration] is `null` or its [RouteConfiguration.name]
+  /// does not match any of [RouteName]s, returns the [DashboardPage].
   MetricsPage create(
     RouteConfiguration routeConfiguration,
     PageParametersModel pageParameters,
   ) {
-    Widget child = DashboardPage();
-    RouteName routeName = RouteName.dashboard;
-    String path = RouteConfiguration.dashboard().path;
+    RouteName routeName = routeConfiguration?.name;
+    String path = routeConfiguration?.path;
+    Widget child = const DashboardPage();
 
-    if (routeConfiguration == null) {
-      return _createMetricsPage(child, routeName, path, pageParameters);
-    }
-
-    final routeConfigurationName = routeConfiguration.name;
-
-    switch (routeConfigurationName) {
+    switch (routeName) {
       case RouteName.loading:
         child = const LoadingPage();
-        routeName = routeConfigurationName;
-        path = routeConfiguration.path;
         break;
       case RouteName.login:
         child = const LoginPage();
-        routeName = routeConfigurationName;
-        path = routeConfiguration.path;
-        break;
-      case RouteName.dashboard:
-        child = DashboardPage();
-        routeName = routeConfigurationName;
-        path = routeConfiguration.path;
         break;
       case RouteName.projectGroups:
-        child = ProjectGroupPage();
-        routeName = routeConfigurationName;
-        path = routeConfiguration.path;
+        child = const ProjectGroupPage();
         break;
       case RouteName.debugMenu:
         child = const DebugMenuPage();
-        routeName = routeConfigurationName;
-        path = routeConfiguration.path;
+        break;
+      default:
+        path = RouteConfiguration.dashboard().path;
+        routeName = RouteName.dashboard;
         break;
     }
 

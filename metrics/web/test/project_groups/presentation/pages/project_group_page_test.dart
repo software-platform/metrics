@@ -85,7 +85,7 @@ class _ProjectGroupPageTestbed extends StatelessWidget {
   Widget build(BuildContext context) {
     return TestInjectionContainer(
       projectGroupsNotifier: projectGroupsNotifier,
-      child: MetricsThemedTestbed(
+      child: const MetricsThemedTestbed(
         body: ProjectGroupPage(),
       ),
     );
