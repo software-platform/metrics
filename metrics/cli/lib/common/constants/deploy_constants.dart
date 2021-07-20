@@ -4,7 +4,7 @@
 /// A class that holds the constants for the deployment process.
 class DeployConstants {
   /// A URL to the Metrics repository.
-  static const String repoURL = 'https://github.com/Flank/flank-dashboard';
+  static const String repoUrl = 'https://github.com/Flank/flank-dashboard';
 
   /// A Firebase Hosting target name.
   static const String firebaseTarget = 'metrics';
