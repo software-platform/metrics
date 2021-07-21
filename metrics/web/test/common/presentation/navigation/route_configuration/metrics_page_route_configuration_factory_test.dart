@@ -25,9 +25,7 @@ void main() {
     const pageParameters = DashboardPageParametersModel();
 
     final pageParametersMap = pageParameters.toMap();
-    final loadingRouteConfiguration = DefaultRoutes.loading;
-    final routeName = RouteNameMock();
-    final routeConfiguration = RouteConfigurationMock();
+    const loadingRouteConfiguration = DefaultRoutes.loading;
 
     MetricsPage createMetricsPage({
       RouteName routeName,
@@ -50,8 +48,11 @@ void main() {
     );
 
     test(
-      ".create() returns a loading route configuration if the given page's route name is unknown",
+      ".create() returns a loading route configuration if the given page route name is unknown",
       () {
+        final routeName = RouteNameMock();
+        final routeConfiguration = RouteConfigurationMock();
+
         when(routeConfiguration.name).thenReturn(routeName);
         when(routeName.value).thenReturn('unknown');
 
@@ -62,7 +63,7 @@ void main() {
     );
 
     test(
-      ".create() returns a loading route configuration if the given page's route name is a loading",
+      ".create() returns a loading route configuration if the given page route name is a loading",
       () {
         final page = createMetricsPage(routeName: RouteName.loading);
 
@@ -73,19 +74,18 @@ void main() {
     );
 
     test(
-      ".create() returns a login route configuration if the given page's route name is a login",
+      ".create() returns a login route configuration if the given page route name is a login",
       () {
         final page = createMetricsPage(routeName: loginRouteName);
-        final expectedConfiguration = DefaultRoutes.login;
 
         final configuration = pageRouteConfigurationFactory.create(page);
 
-        expect(configuration, equals(expectedConfiguration));
+        expect(configuration, equals(DefaultRoutes.login));
       },
     );
 
     test(
-      ".create() returns a login route configuration with the given page's parameters if the given page's route name is a login",
+      ".create() returns a route configuration with the parameters equal to the given page parameters if the page route name is a login",
       () {
         final page = createMetricsPage(
           routeName: loginRouteName,
@@ -99,19 +99,18 @@ void main() {
     );
 
     test(
-      ".create() returns a dashboard route configuration if the given page's route name is a dashboard",
+      ".create() returns a dashboard route configuration if the given page route name is a dashboard",
       () {
         final page = createMetricsPage(routeName: dashboardRouteName);
-        final expectedConfiguration = DefaultRoutes.dashboard;
 
         final configuration = pageRouteConfigurationFactory.create(page);
 
-        expect(configuration, equals(expectedConfiguration));
+        expect(configuration, equals(DefaultRoutes.dashboard));
       },
     );
 
     test(
-      ".create() returns a dashboard route configuration with the given page's parameters if the given page's route name is a dashboard",
+      ".create() returns a route configuration with the parameters equal to the given page parameters if the page route name is a dashboard",
       () {
         final page = createMetricsPage(
           routeName: dashboardRouteName,
@@ -125,19 +124,18 @@ void main() {
     );
 
     test(
-      ".create() returns a project groups route configuration if the given page's route name is a project groups",
+      ".create() returns a project groups route configuration if the given page route name is a project groups",
       () {
         final page = createMetricsPage(routeName: projectGroupsRouteName);
-        final expectedConfiguration = DefaultRoutes.projectGroups;
 
         final configuration = pageRouteConfigurationFactory.create(page);
 
-        expect(configuration, equals(expectedConfiguration));
+        expect(configuration, equals(DefaultRoutes.projectGroups));
       },
     );
 
     test(
-      ".create() returns a project groups route configuration with the given page's parameters if the given page's route name is a project groups",
+      ".create() returns a route configuration with the parameters equal to the given page parameters if the page route name is project groups",
       () {
         final page = createMetricsPage(
           routeName: projectGroupsRouteName,
@@ -151,19 +149,18 @@ void main() {
     );
 
     test(
-      ".create() returns a debug menu route configuration if the given page's route name is a debug menu",
+      ".create() returns a debug menu route configuration if the given page route name is a debug menu",
       () {
         final page = createMetricsPage(routeName: debugMenuRouteName);
-        final expectedConfiguration = DefaultRoutes.debugMenu;
 
         final configuration = pageRouteConfigurationFactory.create(page);
 
-        expect(configuration, equals(expectedConfiguration));
+        expect(configuration, equals(DefaultRoutes.debugMenu));
       },
     );
 
     test(
-      ".create() returns a debug menu route configuration with the given page's parameters if the given page's route name is a debug menu",
+      ".create() returns a route configuration with the parameters equal to the given page parameters if the page route name is a debug menu",
       () {
         final page = createMetricsPage(
           routeName: debugMenuRouteName,

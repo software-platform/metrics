@@ -14,17 +14,15 @@ class MetricsPageRouteConfigurationFactory {
   const MetricsPageRouteConfigurationFactory();
 
   /// Creates the [RouteConfiguration] using the given [page].
-  /// 
-  /// If the given [page] is `null` returns [DefaultRoutes.loading].
-  /// If the given [MetricsPage.routeName] does not match to any of [RouteName]s
-  /// returns the [DefaultRoutes.loading].
+  ///
+  /// If the given [page] is `null` or its [MetricsPage.routeName] does not
+  /// match to any of [RouteName]s returns the [DefaultRoutes.loading].
   RouteConfiguration create(MetricsPage page) {
-    if (page == null) return DefaultRoutes.loading;
-
+    final routeName = page?.routeName;
     final parameters = page?.arguments as PageParametersModel;
     final parametersMap = parameters?.toMap();
 
-    switch (page.routeName) {
+    switch (routeName) {
       case RouteName.login:
         return RouteConfiguration.login(parameters: parametersMap);
       case RouteName.dashboard:

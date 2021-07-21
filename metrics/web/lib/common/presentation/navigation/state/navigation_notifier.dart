@@ -30,7 +30,7 @@ class NavigationNotifier extends ChangeNotifier {
   final PageParametersFactory _pageParametersFactory;
 
   /// A [MetricsPageRouteConfigurationFactory] used to create 
-  /// a [RouteConfiguration] from the [MetricsPage].
+  /// the [RouteConfiguration] from the [MetricsPage].
   final MetricsPageRouteConfigurationFactory
       _metricsPageRouteConfigurationFactory;
 
