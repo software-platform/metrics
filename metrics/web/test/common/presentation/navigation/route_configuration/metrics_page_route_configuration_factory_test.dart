@@ -11,7 +11,6 @@ import 'package:metrics/dashboard/presentation/models/dashboard_page_parameters_
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../../../../test_utils/route_configuration_mock.dart';
 import '../../../../test_utils/route_name_mock.dart';
 
 void main() {
@@ -51,12 +50,12 @@ void main() {
       ".create() returns a loading route configuration if the given page route name is unknown",
       () {
         final routeName = RouteNameMock();
-        final routeConfiguration = RouteConfigurationMock();
+        final page = MetricsPageMock();
 
-        when(routeConfiguration.name).thenReturn(routeName);
         when(routeName.value).thenReturn('unknown');
+        when(page.routeName).thenReturn(routeName);
 
-        final configuration = pageRouteConfigurationFactory.create(null);
+        final configuration = pageRouteConfigurationFactory.create(page);
 
         expect(configuration, equals(loadingRouteConfiguration));
       },
@@ -174,3 +173,5 @@ void main() {
     );
   });
 }
+
+class MetricsPageMock extends Mock implements MetricsPage {}
