@@ -8,6 +8,7 @@ import 'package:metrics/common/presentation/navigation/metrics_page/metrics_page
 import 'package:metrics/common/presentation/navigation/metrics_page/metrics_page_factory.dart';
 import 'package:metrics/common/presentation/navigation/models/factory/page_parameters_factory.dart';
 import 'package:metrics/common/presentation/navigation/models/page_parameters_model.dart';
+import 'package:metrics/common/presentation/navigation/route_configuration/metrics_page_route_configuration_factory.dart';
 import 'package:metrics/common/presentation/navigation/route_configuration/route_configuration.dart';
 import 'package:metrics/common/presentation/navigation/state/navigation_state.dart';
 
@@ -27,6 +28,11 @@ class NavigationNotifier extends ChangeNotifier {
   /// A [PageParametersFactory] used to create a [PageParametersModel]
   /// from the [RouteConfiguration].
   final PageParametersFactory _pageParametersFactory;
+
+  /// A [MetricsPageRouteConfigurationFactory] used to create
+  /// the [RouteConfiguration] from the [MetricsPage].
+  final MetricsPageRouteConfigurationFactory
+      _metricsPageRouteConfigurationFactory;
 
   /// A stack of [MetricsPage]s to use by navigator.
   final List<MetricsPage> _pages = [];
@@ -62,12 +68,16 @@ class NavigationNotifier extends ChangeNotifier {
   ///
   /// Throws an [AssertionError] if the given [MetricsPageFactory] is `null`.
   /// Throws an [AssertionError] if the given [PageParametersFactory] is `null`.
+  /// Throws an [AssertionError] if the given
+  /// [MetricsPageRouteConfigurationFactory] is `null`.
   NavigationNotifier(
     this._pageFactory,
     this._pageParametersFactory,
+    this._metricsPageRouteConfigurationFactory,
     NavigationState navigationState,
   )   : assert(_pageFactory != null),
         assert(_pageParametersFactory != null),
+        assert(_metricsPageRouteConfigurationFactory != null),
         assert(navigationState != null),
         _navigationState = navigationState;
 
@@ -206,12 +216,7 @@ class NavigationNotifier extends ChangeNotifier {
 
   /// Creates a [RouteConfiguration] using the given [page].
   RouteConfiguration _getConfigurationFromPage(MetricsPage page) {
-    final name = page?.name?.replaceAll('/', '');
-
-    return RouteConfiguration.values.firstWhere(
-      (route) => route.name.value == name,
-      orElse: () => DefaultRoutes.dashboard,
-    );
+    return _metricsPageRouteConfigurationFactory.create(page);
   }
 
   /// Adds a new page created from the given [configuration] to the [pages].

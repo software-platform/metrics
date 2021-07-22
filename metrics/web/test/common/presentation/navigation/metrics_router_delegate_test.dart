@@ -7,6 +7,7 @@ import 'package:metrics/common/presentation/navigation/metrics_page/metrics_page
 import 'package:metrics/common/presentation/navigation/metrics_page/metrics_page_factory.dart';
 import 'package:metrics/common/presentation/navigation/metrics_router_delegate.dart';
 import 'package:metrics/common/presentation/navigation/models/factory/page_parameters_factory.dart';
+import 'package:metrics/common/presentation/navigation/route_configuration/metrics_page_route_configuration_factory.dart';
 import 'package:metrics/common/presentation/navigation/route_configuration/route_name.dart';
 import 'package:metrics/common/presentation/navigation/state/navigation_notifier.dart';
 import 'package:mockito/mockito.dart';
@@ -82,6 +83,8 @@ void main() {
     test(
       "notifies listeners once the given navigation notifier notifies listeners",
       () {
+        const pageRouteConfigurationFactory =
+            MetricsPageRouteConfigurationFactory();
         final metricsPageFactory = MetricsPageFactory();
         final pageParametersFactory = PageParametersFactory();
         final navigationState = NavigationStateMock();
@@ -89,6 +92,7 @@ void main() {
         final navigationNotifier = NavigationNotifier(
           metricsPageFactory,
           pageParametersFactory,
+          pageRouteConfigurationFactory,
           navigationState,
         );
         final metricsRouterDelegate = MetricsRouterDelegate(navigationNotifier);
